@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CroSterna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+
+<body>
+    <div class="content-container">
+        <div class="description-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <h1>CroSterna: Age estimation from sternal fusion and rib ossification in Croatian population</h1>
+            <p>This app was developed on the modern Croatian population MSCT scans on an age and sex
+                stratified sample of 180 individuals. It uses four variables: Xiphoid process and mesosternum fusion
+                (FX), ossification of the second to
+                seventh costal cartilages at the rib ends (OR), Ossification of the second to seventh costal
+                cartilages at the sternal ends (OS), and sex of individual. The app provides lower and the
+                upper predicted age of an individual with a cross-validation and test set accuracy of 92%.</p>
+        </div>
+        <div class="form-container">
+            <p class="instruction mb-3"><strong>Instructions: </strong>The traits should be scored according to the
+                descriptions available in the <a href="https://pubmed.ncbi.nlm.nih.gov/31954957/">study</a>.</p>
+            <form>
+                <div class="input-container">
+                    <label>FX (0-2): <input type="number" name="FX" min="0" max="2"></label>
+                    <label>OR (0-4): <input type="number" name="OR" min="0" max="4"></label>
+                    <label>OS (0-4): <input type="number" name="OS" min="0" max="4"></label>
+                    <label>Sex (M/F): <input type="text" name="Sex" pattern="[FfMm]" maxlength="1"></label>
+                </div>
+                <div class="warning-message" id="warning" style="display: none;"></div>
+                <div class="button-container">
+                    <button type="submit">PREDICT</button>
+                    <button type="button" class="reset-button" onclick="resetFormAndHideResult()">CLEAR</button>
+                </div>
+            </form>
+            <div id="resultDiv" style="display: none;">
+                <h2>Predicted age</h2>
+                <div class="timeline-wrapper">
+                    <span class="scale-label">18</span>
+                    <div class="timeline-container">
+                        <div class="timeline-bar"></div>
+                        <span class="timeline-marker lower"></span>
+                        <span class="timeline-marker upper"></span>
+                        <span class="marker-label lower"></span>
+                        <span class="marker-label upper"></span>
+                    </div>
+                    <span class="scale-label">100</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
