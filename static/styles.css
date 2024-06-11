@@ -304,3 +304,12 @@ button:hover {
     padding: 0.6rem 1.2rem !important;
   }
 }
+
+
+@media only screen and (min-width: 1700px) {
+  button {
+    padding: 1% 0%;
+    text-align: center;
+  }
+}
+
